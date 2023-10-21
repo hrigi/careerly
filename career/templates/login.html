@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Intelligent Career Guidance System</title>
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet">
+		
+
+  <link href="{{ url_for('static', filename='chart.css') }}" rel="stylesheet" media="all">
+  
+  <link href="{{ url_for('static', filename='css1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+  
+  <link href="{{ url_for('static', filename='css1/font-awesome.min.css') }}" rel="stylesheet" media="all">
+  
+  <link href="{{ url_for('static', filename='css1/s.css') }}" rel="stylesheet" media="all">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="../static/js/script.js"></script>
+
+</head>
+<body>
+<!--Header-->
+        <header id="header" class="transparent-nav" style="position: fixed;background-color: rgb(120, 70, 167); top: 0;">
+			<div class="container">
+
+				<div class="navbar-header">
+					<!-- Logo -->
+					<div class="navbar-brand">
+						<a class="logo" href="http://127.0.0.1/php%20CAREERLY/main.php">Career.ly</a>
+					</div>
+					<!-- /Logo -->
+
+					<!-- Mobile toggle -->
+					<button class="navbar-toggle">
+						<span></span>
+					</button>
+					<!-- /Mobile toggle -->
+				</div>
+
+			
+				<nav id="nav">
+					<ul class="main-menu nav navbar-nav navbar-right">	``
+						<li><a href="/">Login</a></li>
+						<li><a href="/register">Register</a></li>
+						<li><a href="/blog">Courses</a></li>
+					</ul>
+				</nav>
+
+			</div>
+		</header>
+		<div class="hero-area section">
+
+			<!-- Backgound Image -->
+			<div class="bg-image bg-parallax overlay" style="background-image:url(static/img/bgc2.jpg); " ></div>
+			<!-- /Backgound Image -->
+
+			<div class="container">
+				<div class="row" >
+					<div class="col-md-10 col-md-offset-1 text-center">
+						
+						<h1 class="white-text">Get Started to Discover Yourself!</h1>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+    <!-- Icons font CSS-->
+
+    <link href=" {{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+    <link href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='css/range.scss') }}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+
+    <link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+
+    <link href="{{ url_for('static', filename='vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+      <!-- Main CSS-->
+
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Login Here.....!!</h2>
+				
+                </div>
+				
+				
+                <div class="card-body">
+                    
+					<form  method="POST">
+						
+					
+				        <div class="form-group row">
+							<label  class="col-sm-3  col-form-label">Email</label>
+							<div class="col-sm-9">
+                                <input type="email" name="email" placeholder="Email" required >
+                                
+						    </div>
+				        </div>
+                        <div class="form-group row">
+							<label  class="col-sm-3  col-form-label">Password</label>
+							<div class="col-sm-9">
+                                <input type="password" name="password" placeholder="Password" required>
+						    </div>
+				        </div>
+
+			<center>
+				<div style="margin-right: 30%;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn btn--radius-2 btn--red" type="submit"  style="margin-left: 30%;">Login </button>
+				<a href="/forgot" >Forgot Password</a></div>
+			</center>
+            <br>
+			<button class="btn btn--radius-2 btn--red" type="submit" class="btn-submit-reg " style="margin-left: 25%;"><a href="/register">Create a New Account !!!</a></button>
+		</div>
+		
+		</div>						
+				</div>
+</div>		
+
+</form>		
+			
+    <!-- Footer -->
+		<footer id="footer" class="section">
+
+			<!-- container -->
+			<div class="container">
+
+				<!-- row -->
+				<div class="row">
+
+					<!-- footer logo -->
+					<div class="col-md-6">
+						<div class="footer-logo">
+							<a class="logo" style="font-size: 30px;" href="/">Career.ly</a>
+						</div>
+					</div>
+					<!-- footer logo -->
+
+
+				</div>
+				<!-- /row -->
+
+				<!-- row -->
+				<div id="bottom-footer" class="row">
+
+					<!-- social -->
+					<div class="col-md-4 col-md-push-8">
+						
+					</div>
+					<!-- /social -->
+
+					<!-- copyright -->
+					<div class="col-md-8 col-md-pull-4">
+						<div class="footer-copyright">
+							<span>&copy; Copyright 2021. All Rights Reserved. </span>
+						</div>
+					</div>
+					<!-- /copyright -->
+					</div>
+				<!-- row -->
+
+			</div>
+			<!-- /container -->
+
+		</footer>
+		<!-- /Footer -->
+		
+
+</body>
+
+</html>
