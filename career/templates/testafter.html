@@ -1,150 +1,524 @@
-
 <html>
+
 <head>
-  <meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Intelligent Career Guidance System</title>
+	<title>Intelligent Career Guidance System</title>
 
-		<!-- Google font -->
-		<link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet">
-		
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:700%7CMontserrat:400,600" rel="stylesheet">
 
-  <link href="{{ url_for('static', filename='chart.css') }}" rel="stylesheet" media="all">
-  
-  <link href="{{ url_for('static', filename='css1/bootstrap.min.css') }}" rel="stylesheet" media="all">
-  
-  <link href="{{ url_for('static', filename='css1/font-awesome.min.css') }}" rel="stylesheet" media="all">
-  
-  <link href="{{ url_for('static', filename='css1/s.css') }}" rel="stylesheet" media="all">
-  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+
+	<link href="{{ url_for('static', filename='chart.css') }}" rel="stylesheet" media="all">
+
+	<link href="{{ url_for('static', filename='css1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+	<link href="{{ url_for('static', filename='css1/font-awesome.min.css') }}" rel="stylesheet" media="all">
+
+	<link href="{{ url_for('static', filename='css1/s.css') }}" rel="stylesheet" media="all">
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+	<style>
+		.dflex{
+			display: flex;
+		}
+		.show {
+			display: block;
+		}
+
+		.chatBox {
+			position: fixed;
+			z-index: 10;
+			bottom: 20;
+			right: 0;
+			width: 300px;
+			margin: 40px;
+			margin-bottom: 0;
+			font-size: 13px;
+			background: white;
+			border: 1px solid black;
+			box-shadow: #888 2px 2px 2px 2px;
+			display: block;
+		}
+
+		.chat-content {
+			overflow: auto;
+			height: 300px;
+			padding: 5px;
+		}
+
+		.chatBox .card {
+			border-radius: 4px;
+		}
+
+		.chatBox .card-header {
+			background: #683db8;
+			padding: 10px;
+
+		}
+
+		.header-title {
+			height: 50px;
+		}
+
+		.card-header-title i {
+			font-size: 10px;
+			color: #32e4cd;
+			margin-right: 6px;
+		}
+
+		.card-header .card-header-title {
+			color: #FFF;
+		}
+
+		.chat-content small {
+			margin: 0;
+		}
+
+		.chat-content p {
+			background: #ecf1f8;
+			padding: 10px;
+			border-radius: 8px;
+			margin-bottom: 0;
+		}
+
+		.my-content .media-content {
+			width: 80%;
+		}
+
+		.my-content .message {
+			float: right;
+			background: #683db8;
+			color: #FFF;
+			text-align: right;
+			padding: 10px;
+			margin-bottom: 4px;
+			font-size: 13px;
+		}
+
+		.my-content .chat-content small {
+			float: right;
+		}
+
+		.my-content small {
+			display: block;
+			float: right;
+			width: 100%;
+			text-align: right;
+		}
+
+		.chat-textarea {
+			font-size: 14px;
+			padding: 8px;
+			height: 40px;
+			width: 100%;
+			border: none;
+			overflow: auto;
+			outline: none;
+
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			resize: none;
+		}
+
+		.chat-message-group {}
+
+		.chat-message-group .chat-thumb {
+			float: left;
+			width: 10%;
+		}
+
+		.chat-message-group .chat-messages {
+			float: left;
+			width: 80%;
+			margin-bottom: 20px;
+		}
+
+		.chat-message-group .message {
+			float: left;
+			padding: 10px;
+			background: #ecf1f8;
+			font-size: 13px;
+			border-radius: 5px;
+			margin-bottom: 3px;
+		}
+
+		.chat-messages .from {
+			float: left;
+			display: block;
+			width: 100%;
+			text-align: left;
+			font-size: 11px;
+		}
+
+		.chat-thumb img {
+			border-radius: 40px;
+		}
+
+		.writer-user .chat-messages {
+			float: right;
+			width: 100%;
+		}
+
+		.writer-user .chat-messages .message {
+			float: right;
+			background: #683db8;
+			color: #FFF;
+		}
+
+		.writer-user .chat-messages .from {
+			float: left;
+			display: block;
+			width: 100%;
+			text-align: right;
+		}
+
+		.chat-message-group .typing {
+			float: left;
+		}
+
+		.chatBox .card-header-icon i {
+			color: #FFF;
+			font-size: 13px;
+		}
+
+		/* CSSS */
+		.outside-box {
+			height: 100px;
+			background: #F8C;
+			width: 200px;
+			margin: 20px;
+			overflow: auto;
+		}
+
+		.outside-box .content-insider {
+			height: 300px;
+			background: #C9C;
+		}
+
+		/* CSS Spinner */
+		.spinner {
+			margin: 0 30px;
+			width: 70px;
+			text-align: center;
+		}
+
+		.spinner>div {
+			width: 4px;
+			height: 4px;
+			background-color: #888;
+
+			border-radius: 100%;
+			display: inline-block;
+			-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+			animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+		}
+
+		.spinner .bounce1 {
+			-webkit-animation-delay: -0.32s;
+			animation-delay: -0.32s;
+		}
+
+		.spinner .bounce2 {
+			-webkit-animation-delay: -0.16s;
+			animation-delay: -0.16s;
+		}
+
+		@-webkit-keyframes sk-bouncedelay {
+
+			0%,
+			80%,
+			100% {
+				-webkit-transform: scale(0)
+			}
+
+			40% {
+				-webkit-transform: scale(1.0)
+			}
+		}
+
+		@keyframes sk-bouncedelay {
+
+			0%,
+			80%,
+			100% {
+				-webkit-transform: scale(0);
+				transform: scale(0);
+			}
+
+			40% {
+				-webkit-transform: scale(1.0);
+				transform: scale(1.0);
+			}
+		}
+
+		/* EmojiBox */
+		.emojiBox {
+			width: 150px;
+			margin: 30px;
+		}
+
+		.emojiBox .box {
+			height: 100px;
+			padding: 4px;
+		}
+
+		/* */
+		.card-header-title img {
+			border-radius: 40px;
+		}
+
+		.card-footer{
+			align-items: center;
+		}
+
+		.sendbtn{
+			background-color: black;
+			color: white;
+			border-radius: 6px;
+			width: 60px;
+    height: 30px;
+		}
+	</style>
 </head>
+
 <body>
-<!--Header-->
-        <header id="header" class="transparent-nav" style="position: fixed;background-color: rgb(120, 70, 167); top: 0;">
-			<div class="container">
+	<!--Header-->
+	<header id="header" class="transparent-nav" style="position: fixed;background-color: rgb(120, 70, 167); top: 0;">
+		<div class="container">
 
-				<div class="navbar-header">
-					<!-- Logo -->
-					<div class="navbar-brand">
-						<a class="logo" href="http://127.0.0.1/php%20CAREERLY/main.php">Career.ly</a>
-					</div>
-					<!-- /Logo -->
-
-					<!-- Mobile toggle -->
-					<button class="navbar-toggle">
-						<span></span>
-					</button>
-					<!-- /Mobile toggle -->
+			<div class="navbar-header">
+				<!-- Logo -->
+				<div class="navbar-brand">
+					<a class="logo" href="http://127.0.0.1/php%20CAREERLY/main.php">Career.ly</a>
 				</div>
+				<!-- /Logo -->
 
-
-				<nav id="nav">
-					<ul class="main-menu nav navbar-nav navbar-right">
-						<li><a href="/hometest">Test</a></li>
-						<li><a href="/logout">Logout</a></li>
-					</ul>
-				</nav>
-
-
+				<!-- Mobile toggle -->
+				<button class="navbar-toggle">
+					<span></span>
+				</button>
+				<!-- /Mobile toggle -->
 			</div>
-		</header>
-	
-   <br><br><br><br><br><br><br>
-   <b><h1>Hey! The top job roles that matched your skills.....</h1><br><br></b>
-   <div class="graph-cont">
-   <h1>You can be a great:</h1>
-   <div class="bar bar1" ><a href="/blog" style="text-decoration: none;"><font color="white">{{ job0 }}</a></font></div><br>
-	
-		
-		
-	  
-	 
-	 {%for key, value in final_res.items(): %}
-		{%if job0!=job_dict[value]%}
-		 <div class="bar bar2"><a href="/blog" style="text-decoration: none;"><font color="white">{{job_dict[value]}}</a></font></div><br>
 
-	 
-	 
-	 
-		
-		
-					<!--<div class="bar bar2"><a href="#" style="text-decoration: none;"><font color="white">{{job_dict[value]|e}}</a></font></div><br> --> 
-		              
+
+			<nav id="nav">
+				<ul class="main-menu nav navbar-nav navbar-right">
+					<li><a href="/hometest">Test</a></li>
+					<li><a href="/logout">Logout</a></li>
+				</ul>
+			</nav>
+
+
+		</div>
+	</header>
+
+	<br><br><br><br><br><br><br>
+	<b>
+		<h1>Hey! The top job roles that matched your skills.....</h1><br><br>
+	</b>
+	<div class="graph-cont">
+		<h1>You can be a great:</h1>
+		<div class="bar bar1"><a href="/blog" style="text-decoration: none;">
+				<font color="white">{{ job0 }}
+			</a></font>
+		</div><br>
+
+
+
+
+
+		{%for key, value in final_res.items(): %}
+		{%if job0!=job_dict[value]%}
+		<div class="bar bar2"><a href="/blog" style="text-decoration: none;">
+				<font class="roless" color="white">{{job_dict[value]}}</font>
+			</a></div><br>
+
+
+
+
+
+
+		<!--<div class="bar bar2"><a href="#" style="text-decoration: none;"><font color="white">{{job_dict[value]|e}}</a></font></div><br> -->
+
 
 		<!--	<div class="bar bar2"><a href="#" style="text-decoration: none;"><font color="white">{{job_dict[value]}}</a></font></div><br>  
 		
 		-->
 		{%endif%}
-	 {%endfor%}
-	 
-	<p>{{message}}</p>
-	<i><h2><p><a href="/blog">To know more about these job roles click here!</a></p></h2></i>
-	
-	 
-	 
-	 
-	 
-	
-	 
-	 
-	 
-      
-   <!--<div class="bar bar2"><a href="#" style="text-decoration: none;"><font color="white">{{ job1 }}</a></font></div><br>
-   <div class="bar bar3" ><a href="#" style="text-decoration: none;"><font color="white">{{ job2 }}</a></font></div><br>
-   <div class="bar bar4"><a href="#" style="text-decoration: none;"><font color="white">{{ job3 }}</a></font></div><br>-->
-	
-  </div>
-  <br><br><br><br><br><br><br>
-  <!-- Footer -->
-		<footer id="footer" class="section">
+		{%endfor%}
 
-			<!-- container -->
-			<div class="container">
+		<p>{{message}}</p>
+		<i>
+			<h2>
+				<p><a href="/blog">To know more about these job roles click here!</a></p>
+			</h2>
+		</i>
+		<button onclick="change()">Chat with ai</button>
 
-				<!-- row -->
-				<div class="row">
+		<div class="chatBox" id="chatBox">
+			<div class="card">
 
-					<!-- footer logo -->
-					<div class="col-md-6">
-						<div class="footer-logo">
-							<a class="logo" style="font-size: 30px;" href="main.php">Career.ly</a>
+				<header class="card-header header-title" @click="toggleChat()">
+					<p class="card-header-title">
+						<img src="https://www.shutterstock.com/image-vector/robot-head-avatar-vector-design-600nw-2352274355.jpg"
+							style="width: 30px;">&nbsp;{{headUser}}
+					</p>
+					<!-- <a class="card-header-icon">
+			  <span class="icon">
+				<i class="fa fa-close"></i>
+			  </span>
+			</a> -->
+				</header>
+
+				<div id="chatbox-area">
+					<div class="card-content chat-content">
+						<div class="content">
+							<div class="chat-message-group">
+								<div class="chat-thumb">
+									<figure class="image is-32x32">
+										<img width="20"
+											src="https://www.shutterstock.com/image-vector/robot-head-avatar-vector-design-600nw-2352274355.jpg">
+									</figure>
+								</div>
+								<div class="chat-messages">
+									<div class="message">How can I assist you today</div>
+									<div class="from">today 04:55</div>
+								</div>
+							</div>
+							<div class="chat-message-group writer-user">
+								<div class="chat-messages">
+									<div class="message">Hello</div>
+									<div class="from">today 04:55</div>
+								</div>
+							</div>
+							<div class="chat-message-group">
+								<div class="chat-thumb">
+									<figure class="image is-32x32">
+										<img width="20"
+											src="https://www.shutterstock.com/image-vector/robot-head-avatar-vector-design-600nw-2352274355.jpg">
+									</figure>
+								</div>
+								<div class="chat-messages">
+									<div class="message">How can I assist you today</div>
+									<div class="message">hello</div>
+									<div class="from">today 04:55</div>
+								</div>
+							</div>
+							<!-- <div class="chat-message-group">
+				<div class="typing">Typing</div>
+				<div class="spinner">
+					  <div class="bounce1"></div>
+					  <div class="bounce2"></div>
+					  <div class="bounce3"></div>
+				 </div>
+			  </div> -->
 						</div>
 					</div>
-					<!-- footer logo -->
-
-
+					<footer class="card-footer dflex" id="chatBox-textbox">
+						<div style="width: 63%">
+							<textarea id="chatTextarea" class="chat-textarea" placeholder="Type here"
+								v-on:focus="expandTextArea()" v-on:blur="dexpandTetArea()"></textarea>
+						</div>
+						<div class="has-text-centered" style="width: 37%">
+							<button class="button sendbtn">send</button>
+						</div>
+					</footer>
 				</div>
-				<!-- /row -->
-
-				<!-- row -->
-				<div id="bottom-footer" class="row">
-
-					<!-- social -->
-					<div class="col-md-4 col-md-push-8">
-						
-					</div>
-					<!-- /social -->
-
-					<!-- copyright -->
-					<div class="col-md-8 col-md-pull-4">
-						<div class="footer-copyright">
-							<span>&copy; Copyright 2021. All Rights Reserved. </span>
-						</div>
-					</div>
-					<!-- /copyright -->
-					</div>
-				<!-- row -->
+			</div>
+		</div>
+		<div class="emojiBox" style="display: none">
+			<div class="box">
 
 			</div>
-			<!-- /container -->
 
-		</footer>
-		<!-- /Footer -->
+		</div>
+		<!-- <div style="position: fixed;
+	 height: 300px;
+	 width: 300px;
+	 background-color: aliceblue;
+	 bottom: 20px;
+	 border-color: black;
+	 border-width: 2px;
+	 border-radius: 8px;
+	 border-style: solid;
+	 right: 20px;">
+		<div>
 
+		</div>
+		<input style="bottom: 0;
+		position: absolute;
+		background-color: white;
+		z-index: 10"
+		 type="text"/>
+	 </div> -->
+
+
+
+
+
+
+		<!--<div class="bar bar2"><a href="#" style="text-decoration: none;"><font color="white">{{ job1 }}</a></font></div><br>
+   <div class="bar bar3" ><a href="#" style="text-decoration: none;"><font color="white">{{ job2 }}</a></font></div><br>
+   <div class="bar bar4"><a href="#" style="text-decoration: none;"><font color="white">{{ job3 }}</a></font></div><br>-->
+
+	</div>
+	<br><br><br><br><br><br><br>
+	<!-- Footer -->
+	<footer id="footer" class="section">
+
+		<!-- container -->
+		<div class="container">
+
+			<!-- row -->
+			<div class="row">
+
+				<!-- footer logo -->
+				<div class="col-md-6">
+					<div class="footer-logo">
+						<a class="logo" style="font-size: 30px;" href="main.php">Career.ly</a>
+					</div>
+				</div>
+				<!-- footer logo -->
+
+
+			</div>
+			<!-- /row -->
+
+			<!-- row -->
+			<div id="bottom-footer" class="row">
+
+				<!-- social -->
+				<div class="col-md-4 col-md-push-8">
+
+				</div>
+				<!-- /social -->
+
+				<!-- copyright -->
+				<div class="col-md-8 col-md-pull-4">
+					<div class="footer-copyright">
+						<span>&copy; Copyright 2021. All Rights Reserved. </span>
+					</div>
+				</div>
+				<!-- /copyright -->
+			</div>
+			<!-- row -->
+
+		</div>
+		<!-- /container -->
+
+	</footer>
+	<!-- /Footer -->
+	<script>
+		function change(){
+			document.getElementById("chatBox").style.display=  document.getElementById("chatBox").style.display=='block'?'none':'block'
+		}
+	</script>
 </body>
+
 </html>
 <!--
 
@@ -156,7 +530,3 @@
      #
 
 -->
-
-
-
-
