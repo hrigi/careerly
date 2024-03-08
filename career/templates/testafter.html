@@ -21,9 +21,10 @@
 	<link href="{{ url_for('static', filename='css1/s.css') }}" rel="stylesheet" media="all">
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
 	<style>
-		.dflex{
+		.dflex {
 			display: flex;
 		}
+
 		.show {
 			display: block;
 		}
@@ -271,16 +272,16 @@
 			border-radius: 40px;
 		}
 
-		.card-footer{
+		.card-footer {
 			align-items: center;
 		}
 
-		.sendbtn{
+		.sendbtn {
 			background-color: black;
 			color: white;
 			border-radius: 6px;
 			width: 60px;
-    height: 30px;
+			height: 30px;
 		}
 	</style>
 </head>
@@ -385,11 +386,11 @@
 									</figure>
 								</div>
 								<div class="chat-messages">
-									<div class="message">How can I assist you today</div>
-									<div class="from">today 04:55</div>
+									<div id="mesagem" class="message">How can I assist you today</div>
+									<!-- <div class="from">today 04:55</div> -->
 								</div>
 							</div>
-							<div class="chat-message-group writer-user">
+							<!-- <div class="chat-message-group writer-user">
 								<div class="chat-messages">
 									<div class="message">Hello</div>
 									<div class="from">today 04:55</div>
@@ -407,7 +408,7 @@
 									<div class="message">hello</div>
 									<div class="from">today 04:55</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- <div class="chat-message-group">
 				<div class="typing">Typing</div>
 				<div class="spinner">
@@ -424,7 +425,7 @@
 								v-on:focus="expandTextArea()" v-on:blur="dexpandTetArea()"></textarea>
 						</div>
 						<div class="has-text-centered" style="width: 37%">
-							<button class="button sendbtn">send</button>
+							<button onclick="send()" class="button sendbtn">send</button>
 						</div>
 					</footer>
 				</div>
@@ -513,8 +514,64 @@
 	</footer>
 	<!-- /Footer -->
 	<script>
-		function change(){
-			document.getElementById("chatBox").style.display=  document.getElementById("chatBox").style.display=='block'?'none':'block'
+		function change() {
+			document.getElementById("chatBox").style.display = document.getElementById("chatBox").style.display == 'block' ? 'none' : 'block'
+		}
+
+		async function send() {
+			var quer = document.getElementById("chatTextarea").value;
+
+			const endpointUrl_Turbo = "https://api.openai.com/v1/completions";
+			var apiKey = "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";
+			var userPrompt = quer;
+
+			const response = await fetch('https://api.openai.com/v1/chats/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'text-davinci-003', // Adjust model as needed
+        prompt: "inputText",
+        temperature: 0.7, // Adjust randomness
+        max_tokens: 100, // Adjust maximum word count
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+	const res =response.json()
+console.log(res);
+			// const res = await fetch(
+			// 	endpointUrl_Turbo,
+			// 	{
+			// 		body: JSON.stringify({
+			// 			"model": "text-davinci-003",
+			// 			"prompt": "Hello",
+			// 			"temperature": 0,
+			// 			"max_tokens": 500
+			// 		}),
+			// 		method: "POST",
+			// 		headers: {
+			// 			"content-type": "application/json",
+			// 			Authorization: "Bearer " + apiKey,
+			// 		},
+			// 	}
+			// ).then((response) => {
+			// 	if (response.ok) {
+			// 		response.json().then((json) => {
+			// 			console.log(json)
+			// 			console.log(json['choices'][0]['message']['content']);
+			// 			document.getElementById("mesagem").value = json['choices'][0]['message']['content']
+			// 		});
+			// 	}
+			// }).catch(err => {
+			// 	console.log(err);
+			// })
+
+			console.log(res);
 		}
 	</script>
 </body>
