@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nuvie Chat Services</title>
+    <link crossorigin="anonymous" rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
+    <link rel= “manifest” href= “manifest.json” />
+    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+</head>
+    
+<body>
+    <div id="main">
+        <div class="topNav">
+            <div class="logo">
+                <img aria-label="resource_awstat_peterkjoseph@nuvie.in_res_logo_nuvie.in/logo.svg" src="./resources/company_logo.png" alt="resource_awstat_peterkjoseph@nuvie.in_res_logo_nuvie.in/logo.svg">
+            </div>
+            <div class="more">
+                <svg version="1.1" aria-label="Download Chat and About Cureya" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400" viewBox="0, 0, 400,400">
+                    <g id="svg">
+                        <path id="path0"
+                            d="M59.292 160.288 C 21.545 166.410,14.385 219.444,49.034 236.274 C 89.857 256.102,127.143 202.980,94.812 171.053 C 85.548 161.906,72.919 158.078,59.292 160.288 M192.668 160.212 C 172.023 163.683,156.824 185.029,160.083 205.973 C 165.203 238.877,206.349 251.958,229.091 227.912 C 255.877 199.590,231.206 153.733,192.668 160.212 M325.771 160.290 C 303.412 164.003,288.434 187.714,294.277 210.146 C 304.390 248.973,359.882 250.522,371.775 212.309 C 380.908 182.965,356.361 155.209,325.771 160.290"
+                            stroke="none" fill="#000000" fill-rule="evenodd" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <div class="chatArea">
+            <section class="chat-window" id="chat-window" aria-label="Chat Section of Main App"></section>
+        </div>
+        <div class="messagePanel"></div>
+    </div>
+    <div class="hidden more_onScreen">
+        <div class="hidden more_container">
+            <img aria-label="resource_awstat_peterkjoseph@nuvie.in_res_logo_nuvie.in/logo.svg" src="./resources/cureya_hd.png" alt="resource_awstat_peterkjoseph@nuvie.in_res_logo_nuvie.in/logo.svg">
+            <div class="options">
+                <div class="option" data-rel="dwn">Download Chat</div>
+                <div class="option">Terms of Service</div>
+                <div class="option">Privacy Policy</div>
+                <div class="option close" data-rel="close_more">Close</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://unpkg.com/notie"></script>
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+
+</html>
