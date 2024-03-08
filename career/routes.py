@@ -298,6 +298,10 @@ def Graphic_Designer():
     return render_template("Graphic_Designer.html")
 
 
+@app.route('/chatbot',methods=['GET','POST'])
+def chatbot():
+    return render_template("chatbot.html")
+
 @login_required
 @app.route("/logout")
 def logout():
