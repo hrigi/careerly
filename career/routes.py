@@ -171,6 +171,7 @@ def result():
         #   else:
             # message="The prediction was incorrect."
       print(message)
+      print("final_res",data1)
       return render_template("testafter.html",final_res=final_res,job_dict=jobs_dict,job0=data1,message=message)
                              
                              
